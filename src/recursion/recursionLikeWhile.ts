@@ -1,26 +1,26 @@
-
 // В этом пример мы будем рекурсивно проходится по коробкам и складываит пустые коробки в кучу O(n^2)
 
-export const boxCheckerWhile = (bigBox: Array<number | string | Array<any>>
+export const boxCheckerWhile = (
+    bigBox: Array<number | string | Array<any>>,
 ) => {
- let key = '';
- let res = [...bigBox]
- while(!key && res.length > 0){
-    for(let i = 0; i < res.length; i++){
-        let elemntArr = res[i];
-        if(typeof elemntArr === 'string'){
-            key = elemntArr
+    let key = '';
+    let res = [...bigBox];
+    while (!key && res.length > 0) {
+        for (let i = 0; i < res.length; i++) {
+            let elemntArr = res[i];
+            if (typeof elemntArr === 'string') {
+                key = elemntArr;
+            }
+            if (Array.isArray(elemntArr)) {
+                res.push(...elemntArr);
+                res.shift();
+                break;
+            }
+            res.shift();
         }
-        if(Array.isArray(elemntArr)){
-            res.push(...elemntArr)
-            res.shift()
-            break;
-        }
-        res.shift()
-     }
- }
-    return key
-}
+    }
+    return key;
+};
 
 // если мы хотим найти в массиве ключ [1, 2, [3, 4], [5, 6], [[[[7, ['key']]]]], [8]], сколько нужно операций
 /**
