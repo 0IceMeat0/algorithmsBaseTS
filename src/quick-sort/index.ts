@@ -1,1 +1,1 @@
-export { qSort } from './quickSort'
+export { qSort } from './quickSort';
